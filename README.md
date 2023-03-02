@@ -92,7 +92,7 @@ terraform {
  }
 }
 provider "yandex" {
- token = "YCP-_CgWJdWGdVvhogglxvagKQh3f-MP8dhfug6g"
+ token = "YCP-_CgWJdWGdVvhogglxvagKQh3f-MP8dhfug6G"
  cloud_id = "b1g3e3esaheu3s6on970"
  folder_id = "b1gov3unfr7e8jj3g22v"
  zone = "ru-central1-b"
@@ -143,6 +143,10 @@ output "internal-vm-1" {
 
 output "external-vm-1" {
     value = yandex_compute_instance.vm-1.network_interface.0.net_ip_address
+}
+
+output "macAddress-vm-1" {
+    value = yandex_compute_instance.vm-1.network_interface.0.mac_address
 }
 ```
 ```
