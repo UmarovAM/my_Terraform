@@ -1,5 +1,5 @@
 # my_Terraform
-###  Установка
+##  Установка
 Установка через repository git
 ```
 cd /usr/local/src && git clone https://github.com/hashicorp/terraform.git
@@ -18,3 +18,18 @@ sudo apt install terraform
 
  ```
  ##  Terraform настройка
+
+ Terraform использует конфигурационные файлы с расширением 
+.tf. 
+
+Минимальный набор переменных для успешного 
+подключения:
+```
+provider "Имя провайдера" {
+ user = "ваш_логин"
+ password = "ваш_пароль"
+ org = "название_организации"
+ url = "название сайта с api "
+}
+
+```
