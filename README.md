@@ -25,6 +25,27 @@ sudo apt install terraform
 
 ```
 export PATH=$PATH:/path/to/terraform
+zcat terraform_1.3.6_linux_amd64.zip > terraformBin
+file terraformBin
+chmod 744 terraformBin
+./terraformBin
+./terraformBin --version
+cp terraformBin /usr/local/bin/
+cd ~
+```
+Добавьте в него следующий блок
+```
+nano .terraformrc
+
+provider_installation {
+  network_mirror {
+    url = "https://terraform-mirror.yandexcloud.net/"
+    include = ["registry.terraform.io/*/*"]
+  }
+  direct {
+    exclude = ["registry.terraform.io/*/*"]
+  }
+}
 ```
 
  ##  Terraform настройка
