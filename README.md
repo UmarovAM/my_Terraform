@@ -17,6 +17,16 @@ https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 sudo apt install terraform
 
  ```
+ ## Из зеркала yandex
+ ```
+ wget https://hashicorp-releases.yandexcloud.net/terraform/1.3.6/terraform_1.3.6_linux_amd64.zip
+ ```
+После загрузки добавьте путь к папке, в которой находится исполняемый файл, в переменную PATH:
+
+```
+export PATH=$PATH:/path/to/terraform
+```
+
  ##  Terraform настройка
 
  Terraform использует конфигурационные файлы с расширением 
