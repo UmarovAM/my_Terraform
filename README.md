@@ -92,7 +92,7 @@ terraform {
  }
 }
 provider "yandex" {
- token = "YCP-_CgWJdWGdVvhogglxvagKQh3f-MP8dhfug6G"
+ token = "Получить OAuth-токен для работы с Yandex Cloud можно с помощью запроса к сервису Яндекс OAuth"
  cloud_id = "b1g3e3esaheu3s6on970"
  folder_id = "b1gov3unfr7e8jj3g22v"
  zone = "ru-central1-b"
@@ -105,6 +105,7 @@ resource "yandex_compute_instance" "vm-1" {
   zone        = "ru-central1-b"
 
   resources {
+    core_fraction = 20
     cores  = 2
     memory = 1
   }
