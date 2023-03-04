@@ -1,0 +1,41 @@
+---
+- hosts: all
+  remote_user: user
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+  tasks:
+ #tasks:
+  # - debug: var=ansible_host
+    
+    - name: Install nginx
+      become: yes
+      apt:
+        name: nginx
+
+    - name: Starting ngix
+      become: yes 
+      systemd:
+        name: nginx
+        enabled: true
+        masked: no
+
+    - service:
+        name: nginx
+        state: started
+      become: yes
+      become_method: sudo
+     
+    - name: Delete /var/www/html folder
+      file:
+        path: /var/www/html
+        state: absent
+
+    - name: Copy our lending to /var/www/html folder
+      copy:
+        scr: /root/html
+        dest: /var/www/
+        owner: user
+        group: wheel
+        mode: '0777'
+
