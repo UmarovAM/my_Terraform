@@ -79,6 +79,7 @@ terraform {
 Запускать надо там, где находится файл xxx.tf
 ```
 terraform init
+terraform apply
 ```
 
 ## Создание инфраструктуры
