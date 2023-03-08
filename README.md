@@ -194,6 +194,6 @@ sudo nano /etc/sudoers
 "Сервер SFTP" пишем следующее:
 sudo /usr/lib/sftp-server
 
-## Ansible use whith terraform
+## Ansible use with terraform
 
 
