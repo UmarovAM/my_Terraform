@@ -1,29 +1,30 @@
 # my_Terraform
-##  Установка
+
+## Установка
+
 Установка через repository git
-```
+
+```bash
 cd /usr/local/src && git clone https://github.com/hashicorp/terraform.git
-```
-Вручную
-```
+#Вручную
 cd /usr/local/src && curl -O 
 https://releases.hashicorp.com/terraform/0.15.4/terraform_0.15.4_linux_arm.zip 
-```
- Установка через repository apt
- ```
+
+#Установка через repository apt
+
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=$(dpkg --print-architecture)] 
 https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 sudo apt install terraform
+ ```
 
- ```
- ## Из зеркала yandex
- ```
+## Из зеркала yandex
+
+ ```bash
  wget https://hashicorp-releases.yandexcloud.net/terraform/1.3.6/terraform_1.3.6_linux_amd64.zip
- ```
-После загрузки добавьте путь к папке, в которой находится исполняемый файл, в переменную PATH:
 
-```
+#После загрузки добавьте путь к папке, в которой находится исполняемый файл, в переменную PATH:
+
 export PATH=$PATH:/path/to/terraform
 zcat terraform_1.3.6_linux_amd64.zip > terraformBin
 file terraformBin
@@ -33,8 +34,10 @@ chmod 744 terraformBin
 cp terraformBin /usr/local/bin/
 cd ~
 ```
+
 Добавьте в него следующий блок
-```
+
+```bash
 nano .terraformrc
 
 provider_installation {
@@ -48,13 +51,14 @@ provider_installation {
 }
 ```
 
- ##  Terraform настройка
+## Terraform настройка
 
  Terraform использует конфигурационные файлы с расширением .tf 
 
 Минимальный набор переменных для успешного 
 подключения:
-```
+
+```bash
 provider "Имя провайдера" {
  user = "ваш_логин"
  password = "ваш_пароль"
@@ -64,7 +68,8 @@ provider "Имя провайдера" {
 
 ```
 Для проверки запуска локально
-```
+
+```bash
 nano main.tf
 # 
 terraform {
@@ -75,17 +80,20 @@ terraform {
         }
 } 
 ```
-Сохраняем конфигурацию, и пробуем подключиться: 
+
+Сохраняем конфигурацию, и пробуем подключиться:
 Запускать надо там, где находится файл xxx.tf
-```
+
+```bash
 terraform init
 terraform apply
 ```
 
 ## Создание инфраструктуры
+
 Создаем файл main.tf
 
-```
+```bash
 # конфигурация провайдера
 
 terraform {
@@ -156,22 +164,25 @@ output "macAddress-vm-1" {
     value = yandex_compute_instance.vm-1.network_interface.0.mac_address
 }
 ```
-```
+
+```bash
 terraform plan
 terraform validate
 terraform show
 terraformBin destroy
 
 ```
-### Добавить пользователя на создаваемую ВМ metadataю Для этого создаем файл с мета информацией:
 
-nano meta.txt (yml) 
+### Добавить пользователя на создаваемую ВМ metadata
 
+Для этого создаем файл с мета информацией:
 генерируем ssh ключ:
 ssh-keygen ./id_rsa
 cat id_rsa.pub cp ./meta.txt - ssh-rsa
 
-```
+```bash
+nano meta.txt (yml) 
+
 #cloud-config
 users:
   - name: user
@@ -181,11 +192,16 @@ users:
     ssh-authorized-keys:
       - xxxx(cat id_rsa.pub)
 ```
+
+```bash
 terraform apply
 :~/terraform# ssh user@84.252.136.98 -i id_rsa
 sudo su
+```
 
 Даем права root при работе через WinSCP
+
+```bash
 whereis sftp-server
 sftp-server: /usr/lib/sftp-server /usr/share/man/man8/sftp-server.8.gz
 sudo nano /etc/sudoers
@@ -193,7 +209,6 @@ sudo nano /etc/sudoers
 ВАШЛОГИН ALL=NOPASSWD:/usr/lib/sftp-server
 "Сервер SFTP" пишем следующее:
 sudo /usr/lib/sftp-server
+```
 
 ## Ansible use whith terraform
-
-
