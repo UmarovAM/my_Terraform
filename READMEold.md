@@ -111,7 +111,7 @@ terraform {
 }
 
 provider "yandex" {
-    token = "" # Получить OAuth-токен для  Yandex Cloud  с помощью запроса к Яндекс OAuth"
+    token = "" # Получить OAuth-токен для  Yandex Cloud  с помощью запроса к Яндекс OAuth https://cloud.yandex.ru/docs/iam/concepts/authorization/oauth-token"
     cloud_id = "b1g3e3esaheu3s6on970"
     folder_id = "b1gov3unfr7e8jj3g22v"
     zone = "ru-central1-b"
@@ -131,11 +131,11 @@ resource "yandex_compute_instance" "vm-1" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd8pqqqelpfjceogov30"
+      image_id = "fd8pqqqelpfjceogov30" 
       size = 5
     }
   }
-
+# image_id = fd8suc83g7bvp2o7edee deb 10
   network_interface {
     subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
     nat       = true
@@ -144,6 +144,10 @@ resource "yandex_compute_instance" "vm-1" {
   metadata = {
     user-data = "${file("./meta.txt")}"
     #ssh-keys = "user:{file(~/.ssh/id_rsa.pub)}"
+  }
+# Сделать виртуальную машину прерываемой
+  scheduling_policy {
+    preemptible = true
   }
 }
 
@@ -163,7 +167,7 @@ output "internal-vm-1" {
 }
 
 output "external-vm-1" {
-    value = yandex_compute_instance.vm-1.network_interface.0.net_ip_address
+    value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
 }
 
 output "macAddress-vm-1" {
