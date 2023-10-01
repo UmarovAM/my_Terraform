@@ -31,7 +31,9 @@ file terraformBin
 chmod 744 terraformBin
 ./terraformBin
 ./terraformBin --version
+# чтобы работал в любом месте
 cp terraformBin /usr/local/bin/
+# переходим с /home/user на папку root :#
 cd ~
 ```
 
