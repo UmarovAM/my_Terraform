@@ -206,6 +206,7 @@ users:
 ```bash
 terraform apply
 :~/terraform# ssh user@84.252.136.98 -i id_rsa
+# root@aziz-VirtualBox:~# ssh user@158.160.64.132 -i ./.ssh/id_rsa
 sudo su -
 sudo passwd root
 ```
