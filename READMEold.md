@@ -207,6 +207,7 @@ users:
 terraform apply
 :~/terraform# ssh user@84.252.136.98 -i id_rsa
 # root@aziz-VirtualBox:~# ssh user@158.160.64.132 -i ./.ssh/id_rsa
+# cp /home/user/./.ssh/authorized_keys ~/./.ssh/authorized_keys для входа по root ssh 
 sudo su -
 sudo passwd root
 ```
