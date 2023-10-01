@@ -40,6 +40,10 @@ cd ~
 Добавьте в него следующий блок
 
 ```bash
+root@aziz-VirtualBox:~# pwd
+/root
+root@aziz-VirtualBox:~# nano .terraformrc
+
 nano .terraformrc
 
 provider_installation {
