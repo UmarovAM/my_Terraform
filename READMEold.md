@@ -206,7 +206,8 @@ users:
 ```bash
 terraform apply
 :~/terraform# ssh user@84.252.136.98 -i id_rsa
-sudo su
+sudo su -
+sudo passwd root
 ```
 
 Даем права root при работе через WinSCP
